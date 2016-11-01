@@ -1,0 +1,39 @@
+extends layout
+
+block header
+  div(class="top-bar")
+    div(class="top-bar-left")
+      h1= title
+    div(class="top-bar-right")
+      ul(class="menu")
+        form(method="POST", action="/")
+        input(type="hidden", name="_method", value="PUT")
+        li: label(for="owner") Owner  #[input(type="text", id="owner", name="owner")]
+        li: label(for="repository") Repository #[input(type="text", id="repository", name="repository")]
+        li: label(for="language") Language #[input(type="text", id="language", name="language")]
+        li: button(type="button" class="button") #[i(class="fa fa-search")]
+
+block content
+  div(class="row small-12 columns callout")
+
+    block pagination
+      div(class="row")
+        ul(class="pagination text-center" role="navigation" aria-label="Pagination" data-page="1" data-total="10")
+          li(class="pagination-previous disabled"): i(class="fa fa-angle-left")
+          li(class="current")= 'Page ' + results.length + ' of ' + results.length
+          li(class="pagination-next disabled"): i(class="fa fa-angle-right")
+
+    block results
+        table
+          tr
+            td: h2 Repository
+            td: h2 Description
+            td: h2 Language
+            td: h2 Fork
+          each val in results.length ? results : ['No results']
+            tr
+            #[td: a(href=val.url)= val.full_name]
+            #[td: p= val.description]
+            #[td: p= val.language]
+            #[td: button(class="button secondary"): a(href=val.clone_url): i(class="fa fa-code-fork")]
+

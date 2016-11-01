@@ -1,0 +1,20 @@
+doctype html
+html(class="no-js" land="en")
+  head
+    meta(charset="utf-8")/
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")/
+    title= title
+    link(rel='stylesheet', href='/stylesheets/foundation.min.css')
+    link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/app.css')
+  body
+    block header
+    block content
+      block error
+      block pagination
+      block results
+    script(src='/javascripts/vendor/jquery.js')
+    script(src='/javascripts/vendor/foundation.min.js')
+    script(src='/javascripts/vendor/what-input.js')
+    script(src='/javascripts/app.js')
+
